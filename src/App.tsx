@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
+import { ThemeProvider } from '@emotion/react';
+import { Button, createTheme } from '@mui/material';
+import Box from '@mui/material/Box'
+import { orange } from '@mui/material/colors';
 function App() {
+
+
+  const theme = createTheme({
+      palette: {
+        primary: {
+          main: orange[400],
+          dark: orange[900],
+          contrastText: '#fff'
+        },
+        background:{
+          default: '#f7f7f7'
+        }
+      }
+      
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+    <Box width='100vw' height= '100vh' sx={{ bgcolor: 'background.default'}}>
+    
+    </Box>
+    </ThemeProvider>
+    
   );
 }
 
