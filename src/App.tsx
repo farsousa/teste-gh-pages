@@ -88,8 +88,8 @@ function App() {
               alignItems: "center",
             }}
           >
-            <MenuBookOutlinedIcon style={{ fontSize: 70 }} /> Legislação de
-            Transito
+            <MenuBookOutlinedIcon style={{ fontSize: 70 }} /> <Typography variant="h6">Legislação de
+            Transito</Typography>
           </Item>
         </Grid>
         <Grid item xs={12} sm={4}>
@@ -101,20 +101,13 @@ function App() {
               alignItems: "center",
             }}
           >
-            <BuildOutlinedIcon style={{ fontSize: 70 }} /> Mecânica Básica
+            <BuildOutlinedIcon style={{ fontSize: 70 }} /> <Typography variant="h6">Mecânica Básica</Typography>
           </Item>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Item
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+          <Item sx={{display: "flex",flexDirection: "column", justifyContent: "center",alignItems: "center",}}>
             <TaxiAlertOutlinedIcon style={{ fontSize: 70 }} />
-            Direção Defensiva
+            <Typography variant="h6">Direção Defensiva</Typography>
           </Item>
         </Grid>
         <Grid item xs={12} sm={4}>
@@ -126,7 +119,7 @@ function App() {
               alignItems: "center",
             }}
           >
-            <SosOutlinedIcon style={{ fontSize: 70 }} /> Primeiros Socorros
+            <SosOutlinedIcon style={{ fontSize: 70 }} /> <Typography variant="h6">Primeiros Socorros</Typography>
           </Item>
         </Grid>
         <Grid item xs={12} sm={4}>
