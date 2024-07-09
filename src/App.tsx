@@ -14,6 +14,7 @@ import TurnLeftIcon from "@mui/icons-material/TurnLeft";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
+import '@fontsource/dosis'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -28,7 +29,7 @@ function App() {
 
   return (
     <Box
-    className="main"
+    className="body"
     sx={{
       display: "flex",
       flexDirection: "column",
@@ -40,26 +41,27 @@ function App() {
   >
     <AppBar
       position="static"
-      sx={{ mb: 10, backgroundColor: "gray", height: 80 }}
+      sx={{ mb: 5, backgroundColor: "gray", height: 80 }}
     >
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h5" component="div" sx={{ flexGrow: 1 , fontWeight:'bold'}}>
           <TurnRightIcon sx={{ fontSize: 40 }} />
           
-          Questões Detran
+           Questões Detran
           <TurnLeftIcon sx={{ fontSize: 40 }} />
           
         </Typography>
       </Toolbar>
     </AppBar>
     <Button
-      variant="outlined"
+      variant="contained"
       sx={{
-        width: 300,
+        width: "400",
         mb: 4,
-        color: "gray",
+        padding:2,
+        color: "white",
         fontWeight: "bold",
-        fontSize: 20,
+        fontSize: 15,
         borderColor: "gray",
         borderRadius: 10,
         "&:hover": {
@@ -67,6 +69,7 @@ function App() {
           color: "white",
           borderColor: "gray",
         },
+        backgroundColor: "gray",
       }}
     >
       Simulado Completo
@@ -74,11 +77,12 @@ function App() {
     <Box
       sx={{
         flexGrow: 1,
-        paddingRight: { xs: 4, sm: 3, md: 10, lg: 10, xl: 10 },
-        paddingLeft: { xs: 4, sm: 3, md: 10, lg: 10, xl: 10 },
+        paddingRight: { xs: 1, sm: 3, md: 10, lg: 10, xl: 10 },
+        paddingLeft: { xs: 1, sm: 3, md: 10, lg: 10, xl: 10 },
       }}
+      className="main"
     >
-      <Grid container spacing={4} sx={{ flexWarap: "wrap" }}>
+      <Grid container spacing={4} sx={{ flexWrap: "wrap" }}>
         <Grid item xs={12} sm={4}>
           <Item
             sx={{
