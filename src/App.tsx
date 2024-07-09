@@ -15,16 +15,16 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import '@fontsource/dosis';
 
-import  {Tela_inicial}  from "./pages/Tela_inicial";
+import  Tela_simulado  from "./pages/Tela_simulado";
 
 const sm = 6;
 const md = 4; 
 
-function App() {
+const App: React.FC = () => {
 
 
   return (
-    <Tela_inicial/>
+    <Tela_simulado/>
   );
 }
 
