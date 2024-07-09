@@ -13,7 +13,6 @@ import TurnRightIcon from "@mui/icons-material/TurnRight";
 import TurnLeftIcon from "@mui/icons-material/TurnLeft";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import '@fontsource/dosis'
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -23,6 +22,9 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
+
+const sm = 6;
+const md = 4; 
 
 function App() {
 
@@ -39,16 +41,13 @@ function App() {
       height: "100vh",
     }}
   >
-    <AppBar
-      position="static"
-      sx={{ mb: 5, backgroundColor: "gray", height: 80 }}
-    >
-      <Toolbar>
-        <Typography variant="h5" component="div" sx={{ flexGrow: 1 , fontWeight:'bold'}}>
-          <TurnRightIcon sx={{ fontSize: 40 }} />
+    <AppBar sx={{ backgroundColor: "#c5c6c7", height: 80, pb:3,pt:0.5 }}>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+        <Typography variant="h5" component="div" sx={{fontWeight:900,fontSize: 40, color:"black", display: 'flex', alignItems: 'center'}}>
+          <TurnRightIcon sx={{ fontSize: 60 }} />
           
            Questões Detran
-          <TurnLeftIcon sx={{ fontSize: 40 }} />
+          <TurnLeftIcon sx={{ fontSize: 60 }} />
           
         </Typography>
       </Toolbar>
@@ -56,12 +55,13 @@ function App() {
     <Button
       variant="contained"
       sx={{
-        width: "400",
-        mb: 4,
+        width: { xs: 300, sm: 300, md: 300, lg: 300, xl: 300 },
+        mb: 7,
+        mt:20,
         padding:2,
         color: "white",
         fontWeight: "bold",
-        fontSize: 15,
+        fontSize: 23,
         borderColor: "gray",
         borderRadius: 10,
         "&:hover": {
@@ -70,6 +70,8 @@ function App() {
           borderColor: "gray",
         },
         backgroundColor: "gray",
+        display: 'flex',
+        marginTop: { xs: 70, sm: 20, md: 30, lg: 20, xl: 20 },
       }}
     >
       Simulado Completo
@@ -77,13 +79,13 @@ function App() {
     <Box
       sx={{
         flexGrow: 1,
-        paddingRight: { xs: 1, sm: 3, md: 10, lg: 10, xl: 10 },
-        paddingLeft: { xs: 1, sm: 3, md: 10, lg: 10, xl: 10 },
+        paddingRight: { xs: 4, sm: 6, md: 10, lg: 10, xl: 10 },
+        paddingLeft: { xs: 4, sm: 6, md: 10, lg: 10, xl: 10 },
       }}
       className="main"
     >
-      <Grid container spacing={4} sx={{ flexWrap: "wrap" }}>
-        <Grid item xs={12} sm={4}>
+      <Grid className="card_group" container spacing={4} sx={{ flexWrap: "wrap" , width:'100%',mb:10}}>
+        <Grid item xs={12} sm={sm} md={md}>
           <Item
             sx={{
               display: "flex",
@@ -96,7 +98,7 @@ function App() {
             Transito</Typography>
           </Item>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={sm} md={md}>
           <Item
             sx={{
               display: "flex",
@@ -108,13 +110,13 @@ function App() {
             <BuildOutlinedIcon style={{ fontSize: 70 }} /> <Typography variant="h6">Mecânica Básica</Typography>
           </Item>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={sm} md={md}>
           <Item sx={{display: "flex",flexDirection: "column", justifyContent: "center",alignItems: "center",}}>
             <TaxiAlertOutlinedIcon style={{ fontSize: 70 }} />
             <Typography variant="h6">Direção Defensiva</Typography>
           </Item>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={sm} md={md}>
           <Item
             sx={{
               display: "flex",
@@ -126,7 +128,7 @@ function App() {
             <SosOutlinedIcon style={{ fontSize: 70 }} /> <Typography variant="h6">Primeiros Socorros</Typography>
           </Item>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={sm} md={md}>
           <Item
             sx={{
               display: "flex",
