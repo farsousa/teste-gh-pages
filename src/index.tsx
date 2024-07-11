@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { ThemeProvider} from '@emotion/react';
 import { createTheme } from '@mui/material';
+import '@fontsource/dosis';
+
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

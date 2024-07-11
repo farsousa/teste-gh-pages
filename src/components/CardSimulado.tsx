@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { AppBar, Box, Toolbar, Typography, Card, CardContent, Grid, Button, Divider, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 import TurnRightIcon from '@mui/icons-material/TurnRight';
 import TurnLeftIcon from '@mui/icons-material/TurnLeft';
+import ItemQuestao from './ItemQuestao';
 
 
 
 const QuizCard: React.FC = () => {
-    const DefaultColor: string = "gray"
+  const DefaultColor: string = "gray"
   // Estado para controle do tempo
   const [timeLeft, setTimeLeft] = useState<number>(2400); // 5 minutos em segundos
   const [timerActive, setTimerActive] = useState<boolean>(false);
@@ -71,10 +72,10 @@ const QuizCard: React.FC = () => {
       <CardContent>
         <Typography variant="h6" gutterBottom>Conduzir veículo com defeito no sistema de iluminação ou sinalização constitui infração:</Typography>
         <FormGroup>
-            <FormControlLabel control={<Checkbox/>} label="Grave" />
-            <FormControlLabel control={<Checkbox/>} label="Gravíssima" />
-            <FormControlLabel control={<Checkbox/>} label="Leve" />
-            <FormControlLabel control={<Checkbox/>} label="Média" />
+            <ItemQuestao texto="Grave"></ItemQuestao>
+            <ItemQuestao texto="Gravíssima"></ItemQuestao>
+            <ItemQuestao texto="Leve"></ItemQuestao>
+            <ItemQuestao texto="Média"></ItemQuestao>
         </FormGroup>
       </CardContent>
 

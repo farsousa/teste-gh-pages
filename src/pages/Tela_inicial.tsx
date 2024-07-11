@@ -26,7 +26,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const sm = 6; // define a quantidade de colunas no small screen
 const md = 4; 
 
-export const Tela_inicial = () => {
+ const Tela_inicial = () => {
 
 
     return (
@@ -146,3 +146,4 @@ export const Tela_inicial = () => {
   </Box>
     );
 }
+export default Tela_inicial;

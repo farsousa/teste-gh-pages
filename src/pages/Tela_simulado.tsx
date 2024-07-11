@@ -4,7 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import TurnRightIcon from "@mui/icons-material/TurnRight";
 import TurnLeftIcon from "@mui/icons-material/TurnLeft";
-import Card_simulado from '../components/Card_simulado'
+import Card_simulado from '../components/CardSimulado'
 
  const Tela_simulado: React.FC = () => {
        
