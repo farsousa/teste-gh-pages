@@ -7,7 +7,7 @@ import TurnLeftIcon from "@mui/icons-material/TurnLeft";
 import Card_simulado from '../components/CardSimulado'
 
  const Tela_simulado: React.FC = () => {
-       
+
     return (
         <Box
     className="body"

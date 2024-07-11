@@ -92,7 +92,7 @@ const QuizCard: React.FC = () => {
   );
 };
 
-const Tela_simulado: React.FC = () => {
+const CardSimulado: React.FC = () => {
   return (
     <Box
       className="body"
@@ -121,4 +121,4 @@ const Tela_simulado: React.FC = () => {
   );
 };
 
-export default Tela_simulado;
+export default CardSimulado;

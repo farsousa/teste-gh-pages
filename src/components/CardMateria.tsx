@@ -18,13 +18,29 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const sm = 6; // Define a quantidade de colunas no small screen
 const md = 4;
+type infoMateria = {
+  id:string;
+  descricao: string;
+}
 
-
-const CardMateria = () =>{
+const CardMateria = ({id,descricao}:infoMateria) =>{
+  let iconeMateria;
+  if (descricao === 'Meio Ambiente e Cidadania') {
+    iconeMateria = <EmojiNatureOutlinedIcon style={{ fontSize: 70 }} />;
+  } else if (descricao === 'Mecânica Básica') {
+    iconeMateria = <BuildOutlinedIcon style={{ fontSize: 70 }} />;
+  } else if (descricao === 'Direção Defensiva') {
+    iconeMateria = <TaxiAlertOutlinedIcon style={{ fontSize: 70 }} />;
+  } else if (descricao === 'Primeiros Socorros') {
+    iconeMateria = <SosOutlinedIcon style={{ fontSize: 70 }} />;
+  } else {
+    // Caso padrão: usar o ícone de Livro
+    iconeMateria = <MenuBookOutlinedIcon style={{ fontSize: 70 }} />;
+  }
   return (
     <Grid item xs={12} sm={sm} md={md}>
             <Link
-              to="/simulado/6"
+              to={`/simulado/${id}`}
               style={{
                 textDecoration: "none",
               }}
@@ -37,13 +53,13 @@ const CardMateria = () =>{
                   alignItems: "center",
                 }}
               >
-                <MenuBookOutlinedIcon style={{ fontSize: 70 }} />
-                <Typography variant="h6">Legislação de Transito</Typography>
+                {iconeMateria}
+                <Typography variant="h6">{descricao}</Typography>
               </Item>
             </Link>
           </Grid>
   );
 }
 
-
+export default CardMateria;
 

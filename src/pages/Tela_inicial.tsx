@@ -17,18 +17,7 @@ import "@fontsource/dosis";
 import { Link } from "react-router-dom";
 import api from '../service/Api';
 import { useEffect, useState } from "react";
-
-const [user, setUser] = useState();
-
-useEffect(() => {
-  api
-    .get("/users/romulo27")
-    .then((response) => setUser(response.data))
-    .catch((err) => {
-      console.error("ops! ocorreu um erro" + err);
-    });
-}, []);
-
+import CardMateria from "../components/CardMateria"
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -41,8 +30,30 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const sm = 6; // define a quantidade de colunas no small screen
 const md = 4;
+interface Materia {
+  id: string;
+  descricao: string;
+  quantidadeQuestoesSimuladoEspecifico: number;
+  quantidadeQuestoesSimuladoGeral: number;
+}
+
+interface RespostaApi {
+  lista: Materia[];
+  mensagem: string;
+}
 
 const Tela_inicial = () => {
+  const [listaMaterias, setListaMaterias] = useState<Materia[]>([]);
+
+useEffect(() => {
+  api
+    .get("/materia/listar-todos")
+    .then((response) => setListaMaterias(response.data.lista))
+    .catch((err) => {  
+      console.error("ops! ocorreu um erro" + err);
+    });
+}, []);
+
   return (
     <Box
       className="body"
@@ -119,79 +130,10 @@ const Tela_inicial = () => {
           spacing={4}
           sx={{ flexWrap: "wrap", width: "100%", mb: 10 }}
         >
-          <Grid item xs={12} sm={sm} md={md}>
-            <Link
-              to="/simulado/6"
-              style={{
-                textDecoration: "none",
-              }}
-            >
-              <Item
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <MenuBookOutlinedIcon style={{ fontSize: 70 }} />{" "}
-                <Typography variant="h6">Legislação de Transito</Typography>
-              </Item>
-            </Link>
-          </Grid>
-
-          <Grid item xs={12} sm={sm} md={md}>
-            <Item
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <BuildOutlinedIcon style={{ fontSize: 70 }} />{" "}
-              <Typography variant="h6">Mecânica Básica</Typography>
-            </Item>
-          </Grid>
-          <Grid item xs={12} sm={sm} md={md}>
-            <Item
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <TaxiAlertOutlinedIcon style={{ fontSize: 70 }} />
-              <Typography variant="h6">Direção Defensiva</Typography>
-            </Item>
-          </Grid>
-          <Grid item xs={12} sm={sm} md={md}>
-            <Item
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <SosOutlinedIcon style={{ fontSize: 70 }} />{" "}
-              <Typography variant="h6">Primeiros Socorros</Typography>
-            </Item>
-          </Grid>
-          <Grid item xs={12} sm={sm} md={md}>
-            <Item
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <EmojiNatureOutlinedIcon style={{ fontSize: 70 }} />
-              <Typography variant="h6">Meio Ambiente e Cidadania</Typography>
-            </Item>
-          </Grid>
+          {listaMaterias.map((materia) =>(
+            <CardMateria id={materia.id} descricao={materia.descricao}
+            />
+          ))}
         </Grid>
       </Box>
     </Box>
