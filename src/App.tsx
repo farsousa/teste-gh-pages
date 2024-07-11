@@ -1,9 +1,12 @@
-import  Tela_inicial  from "./pages/Tela_inicial";
-import  Tela_simulado  from "./pages/Tela_simulado";
-
+import { BrowserRouter, Routes } from "react-router-dom";
+import AppRoutes from './routes/AppRoutes'
 const App: React.FC = () => {
   return (
-    <Tela_inicial/>
+    
+    <BrowserRouter>
+        <AppRoutes/>
+    </BrowserRouter>
+    
   );
 }
 
