@@ -9,7 +9,7 @@ import Tela_simulado from '../components/CardSimulado';
     return (
         <Routes>
             <Route path='/pagina-inicial' element={<Tela_inicial/>} />
-            <Route path='/simulado' element={<Tela_simulado/>} />
+            <Route path='/simulado/:id' element={<Tela_simulado/>} />
             <Route path='*' element={<Navigate to = "pagina-inicial" />}/>
         </Routes>
     );
