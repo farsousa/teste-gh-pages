@@ -15,6 +15,21 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import "@fontsource/dosis";
 import { Link } from "react-router-dom";
+import api from '../service/Api';
+import { useEffect, useState } from "react";
+
+const [user, setUser] = useState();
+
+useEffect(() => {
+  api
+    .get("/users/romulo27")
+    .then((response) => setUser(response.data))
+    .catch((err) => {
+      console.error("ops! ocorreu um erro" + err);
+    });
+}, []);
+
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
