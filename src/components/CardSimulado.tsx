@@ -7,62 +7,28 @@ import ItemQuestao from './ItemQuestao';
 
 
 const QuizCard: React.FC = () => {
-  const DefaultColor: string = "gray"
-  // Estado para controle do tempo
-  const [timeLeft, setTimeLeft] = useState<number>(2400); // 5 minutos em segundos
-  const [timerActive, setTimerActive] = useState<boolean>(false);
 
-  // Estados para controle das respostas
-  const [answered, setAnswered] = useState<boolean>(false);
-  const [correctAnswers, setCorrectAnswers] = useState<number>(0);
-  const [wrongAnswers, setWrongAnswers] = useState<number>(0);
+  const [textoBtnResponder, setTextoBtnResponder] = useState<string>("Responder")
+  const [timeLeft, setTimeLeft] = useState<number>(2400);
+  
 
-  // Efeito para controlar o temporizador
-  useEffect(() => {
-    let interval: NodeJS.Timeout | undefined;
-    if (timerActive && timeLeft > 0) {
-      interval = setInterval(() => {
-        setTimeLeft((prevTime) => prevTime - 1);
-      }, 1000);
-    } else if (timeLeft === 0) {
-      clearInterval(interval!);
-      setTimerActive(false);
-      // Aqui você pode adicionar lógica para lidar com o término do tempo, se necessário
-    }
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [timerActive, timeLeft]);
-
-  // Função para lidar com a seleção de uma resposta
-  const handleAnswer = (isCorrect: boolean) => {
-    if (!answered) {
-      setAnswered(true);
-      if (isCorrect) {
-        setCorrectAnswers((prevCount) => prevCount + 1);
-      } else {
-        setWrongAnswers((prevCount) => prevCount + 1);
-      }
-    }
-  };
-
-  // Função para navegar para a próxima pergunta
-  const goToNextQuestion = () => {
-    // Lógica para ir para a próxima pergunta
-    setAnswered(false); // Reset da flag de resposta
-  };
-
-  // Componente do Card de Pergunta    
+  function teste(){
+    if(textoBtnResponder ==="Responder")
+      setTextoBtnResponder("Próxima")
+    else 
+    setTextoBtnResponder("Responder")
+  }
+   
   return (
     <Card variant="outlined" sx={{ minWidth: 400, maxWidth: 600, margin: 'auto', marginTop: 20 }}>
       {/* Cabeçalho com temporizador e contagem de respostas */}
       <CardContent>
           <Box sx={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-            <Typography variant="body2" color="textSecondary">Acertos: {correctAnswers} | Erros: {wrongAnswers}</Typography>
+            <Typography variant="body2" color="textSecondary">Acertos:  | Erros: </Typography>
             <Typography variant="h6" sx={{fontWeight:'bold', fontSize:15}}>Tempo Restante: {Math.floor(timeLeft / 60)}:{('0' + (timeLeft % 60)).slice(-2)}</Typography>
             
           </Box>
-          {/* Adicione outros elementos necessários no cabeçalho aqui */}
+          
         
       </CardContent>
 
@@ -83,9 +49,9 @@ const QuizCard: React.FC = () => {
       <CardContent>
         <Grid container justifyContent="space-between">
           <Button variant="contained" disabled>Anterior</Button>
-          <Button variant="contained" onClick={goToNextQuestion} disabled={!answered}>Próxima</Button>
-          <Button variant="contained" color="error">Encerrar o Simulado</Button>
-          <Button variant="contained" onClick={() => handleAnswer(true)}>Responder</Button>
+         
+          <Button variant="contained" color="error" >Encerrar o Simulado</Button>
+          <Button variant="contained" onClick={teste}>{textoBtnResponder}</Button>
         </Grid>
       </CardContent>
     </Card>
