@@ -6,7 +6,7 @@ type stringBusca = {
 
 const api = axios.create({
 
- baseURL: "http://localhost:3000"   
+ baseURL: "http://franc4230.c44.integrator.host/"   
 
 });
 export default api;

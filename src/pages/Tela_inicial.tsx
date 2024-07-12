@@ -3,18 +3,12 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import EmojiNatureOutlinedIcon from "@mui/icons-material/EmojiNatureOutlined";
-import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
-import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
-import TaxiAlertOutlinedIcon from "@mui/icons-material/TaxiAlertOutlined";
-import SosOutlinedIcon from "@mui/icons-material/SosOutlined";
 import Button from "@mui/material/Button";
 import TurnRightIcon from "@mui/icons-material/TurnRight";
 import TurnLeftIcon from "@mui/icons-material/TurnLeft";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import "@fontsource/dosis";
-import { Link } from "react-router-dom";
 import api from '../service/Api';
 import { useEffect, useState } from "react";
 import CardMateria from "../components/CardMateria"
@@ -47,7 +41,7 @@ const Tela_inicial = () => {
 
 useEffect(() => {
   api
-    .get("/materia/listar-todos")
+    .get("/questoesdetranws/materia/listar-todos")
     .then((response) => setListaMaterias(response.data.lista))
     .catch((err) => {  
       console.error("ops! ocorreu um erro" + err);
@@ -130,10 +124,10 @@ useEffect(() => {
           spacing={4}
           sx={{ flexWrap: "wrap", width: "100%", mb: 10 }}
         >
-          {listaMaterias.map((materia) =>(
-            <CardMateria id={materia.id} descricao={materia.descricao}
+          {listaMaterias != undefined ? listaMaterias.map((materia) =>(
+            <CardMateria key={materia.id} id={materia.id} descricao={materia.descricao}
             />
-          ))}
+          )) : <div> Carregando...</div>}
         </Grid>
       </Box>
     </Box>
