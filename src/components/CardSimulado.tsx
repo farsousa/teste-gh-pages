@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AppBar, Box, Toolbar, Typography, Card, CardContent, Grid, Button, Divider, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
+import { AppBar, Box, Toolbar, Typography, Card, CardContent, Grid, Button, Divider, FormGroup, FormControlLabel, Checkbox, RadioGroup } from '@mui/material';
 import TurnRightIcon from '@mui/icons-material/TurnRight';
 import TurnLeftIcon from '@mui/icons-material/TurnLeft';
 import ItemQuestao from './ItemQuestao';
@@ -37,12 +37,12 @@ const QuizCard: React.FC = () => {
       {/* Conteúdo da pergunta e opções de resposta */}
       <CardContent>
         <Typography variant="h6" gutterBottom>Conduzir veículo com defeito no sistema de iluminação ou sinalização constitui infração:</Typography>
-        <FormGroup>
+        <RadioGroup name="radio-buttons-group" >
             <ItemQuestao texto="Grave"></ItemQuestao>
             <ItemQuestao texto="Gravíssima"></ItemQuestao>
             <ItemQuestao texto="Leve"></ItemQuestao>
             <ItemQuestao texto="Média"></ItemQuestao>
-        </FormGroup>
+        </RadioGroup>
       </CardContent>
 
       {/* Rodapé com botões de navegação e responder */}

@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel } from "@mui/material";
+import { FormControlLabel, Radio } from "@mui/material";
 
   type TextoItem = {
     texto: string
@@ -6,7 +6,7 @@ import { Checkbox, FormControlLabel } from "@mui/material";
   
   const ItemQuestao = ({texto}:TextoItem)=>{
     return(
-        <FormControlLabel control={<Checkbox/>} label={texto} />
+        <FormControlLabel control={<Radio/>} label={texto} value={texto} />
     );
    };
 

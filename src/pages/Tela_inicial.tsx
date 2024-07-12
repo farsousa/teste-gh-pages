@@ -31,11 +31,6 @@ interface Materia {
   quantidadeQuestoesSimuladoGeral: number;
 }
 
-interface RespostaApi {
-  lista: Materia[];
-  mensagem: string;
-}
-
 const Tela_inicial = () => {
   const [listaMaterias, setListaMaterias] = useState<Materia[]>([]);
 
