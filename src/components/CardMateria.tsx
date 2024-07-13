@@ -18,6 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const sm = 6; // Define a quantidade de colunas no small screen
 const md = 4;
+
 type infoMateria = {
   id:string;
   descricao: string;

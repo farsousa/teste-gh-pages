@@ -1,9 +1,11 @@
 import Box from "@mui/material/Box";
-
 import Card_simulado from '../components/CardSimulado'
 import NavBar from "../components/NavBar";
+import api from "../service/Api"
+import { useEffect } from "react";
 
- const Tela_simulado: React.FC = () => {
+
+ const Tela_simulado= () => {
 
     return (
         <Box
@@ -18,7 +20,6 @@ import NavBar from "../components/NavBar";
           }}
         >
           <NavBar/>
-    
           <Card_simulado/>
     
         </Box>

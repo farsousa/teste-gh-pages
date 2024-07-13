@@ -1,7 +1,6 @@
-import { Button } from '@mui/material';
 import {Routes, Route, Navigate} from 'react-router-dom'
 import Tela_inicial from '../pages/Tela_inicial';
-import Tela_simulado from '../components/CardSimulado';
+import Tela_simulado from '../pages/Tela_simulado';
 
   const AppRoutes = () => {
 
