@@ -12,6 +12,7 @@ import "@fontsource/dosis";
 import api from '../service/Api';
 import { useEffect, useState } from "react";
 import CardMateria from "../components/CardMateria"
+import NavBar from "../components/NavBar";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -24,6 +25,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const sm = 6; // define a quantidade de colunas no small screen
 const md = 4;
+
 interface Materia {
   id: string;
   descricao: string;
@@ -55,32 +57,7 @@ useEffect(() => {
         height: "100vh",
       }}
     >
-      <AppBar sx={{ backgroundColor: "#c5c6c7", height: 80, pb: 3, pt: 0.5 }}>
-        <Toolbar
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100%",
-          }}
-        >
-          <Typography
-            variant="h5"
-            component="div"
-            sx={{
-              fontWeight: 900,
-              fontSize: 40,
-              color: "black",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <TurnRightIcon sx={{ fontSize: 60 }} />
-            Questões Detran
-            <TurnLeftIcon sx={{ fontSize: 60 }} />
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <NavBar/>
       <Button
         variant="contained"
         sx={{
