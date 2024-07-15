@@ -22,8 +22,7 @@ type questaoDetalhada = {
   "mensagem": string;
 
 }
-const CardSimulado = ({id}:materia) => {
-
+const CardSimulado = ({id}:materia) => { {/*Aqui é o Id da matéria, só serve para gerar o simulado*/}
 
   const [textoBtnResponder, setTextoBtnResponder] = useState<string>("Responder")
   const [timeLeft, setTimeLeft] = useState<number>(2400);
@@ -53,7 +52,7 @@ const CardSimulado = ({id}:materia) => {
    }
  
 
-  function teste(){
+  function ControlaBtnReponderProxima(){
     if(textoBtnResponder ==="Responder"){
       setTextoBtnResponder("Próxima")
   }else{ 
@@ -92,7 +91,7 @@ const CardSimulado = ({id}:materia) => {
           <Button variant="contained" disabled>Anterior</Button>
          
           <Button variant="contained" color="error" >Encerrar o Simulado</Button>
-          <Button variant="contained" onClick={teste}>{textoBtnResponder}</Button>
+          <Button variant="contained" onClick={ControlaBtnReponderProxima}>{textoBtnResponder}</Button>
         </Grid>
       </CardContent>
     </Card>

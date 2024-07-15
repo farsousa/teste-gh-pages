@@ -24,7 +24,7 @@ import { useParams } from "react-router-dom";
           }}
         >
           <NavBar/>
-          {id !== undefined && <Card_simulado id={id} />}
+          {id !== undefined && <Card_simulado id={"d9e0f1g2-h3i4-j5k6-l7m8-n9o0p1q2"} />}
           
     
         </Box>
