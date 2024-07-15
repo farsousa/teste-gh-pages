@@ -1,17 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import {  Box, Typography, Card, CardContent, Grid, Button, Divider, FormGroup, FormControlLabel, Checkbox, RadioGroup } from '@mui/material';
 import ItemQuestao from './ItemQuestao';
+import api from '../service/Api';
 
 type materia ={
   id:string
 }
+type questaoDetalhada = {
+  "objeto": {
+    "id": string
+    "enunciado": string 
+    "linkImagem": string
+    "alternativa1": string;
+    "alternativa2": string;
+    "alternativa3": string;
+    "alternativa4": string;
+    "resposta": string;
+    "explicacao":  string;
+    "nomeMateria": string;
+  },
+  "mensagem": string;
 
-const CardSimulado = () => {
+}
+const CardSimulado = ({id}:materia) => {
 
 
   const [textoBtnResponder, setTextoBtnResponder] = useState<string>("Responder")
   const [timeLeft, setTimeLeft] = useState<number>(2400);
-
+  const [questoesSimuladoIndividual,setQuestoesSimuladoIndividual] = useState<[] | null>([])
+  const [questaoDetalhada, setQuestaoDetalhada] = useState<questaoDetalhada>()
+  
+  useEffect( () => {
+    api
+    .post("/simulado",{
+       "idMateria": id
+    },)
+    .then((response) =>  setQuestoesSimuladoIndividual(response.data.objeto.questoes))
+    .catch((err) => {  
+      console.error("ops! ocorreu um erro" + err);
+    });
+    consultaQuestao()
+  }, []);
+ 
+   function consultaQuestao(){
+    api
+    .get(`/questao/${id}`)
+    .then((response) =>  setQuestaoDetalhada(response.data))
+    .catch((err) => {  
+      console.error("ops! ocorreu um erro" + err);
+    });
+    console.log("questão detalhada "+JSON.stringify(questaoDetalhada?.objeto))
+   }
+ 
 
   function teste(){
     if(textoBtnResponder ==="Responder"){

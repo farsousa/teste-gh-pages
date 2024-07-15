@@ -33,7 +33,7 @@ const Tela_inicial = () => {
 
 useEffect(() => {
   api
-    .get("/materia/listar-todos")
+    .get("/materia")
     .then((response) => setListaMaterias(response.data.lista))
     .catch((err) => {  
       console.error("ops! ocorreu um erro" + err);

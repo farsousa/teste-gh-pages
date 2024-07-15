@@ -2,11 +2,15 @@ import Box from "@mui/material/Box";
 import Card_simulado from '../components/CardSimulado'
 import NavBar from "../components/NavBar";
 import api from "../service/Api"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 
  const Tela_simulado= () => {
-
+  
+  const {id} = useParams();
+  
+  
     return (
         <Box
           className="body"
@@ -20,7 +24,8 @@ import { useEffect } from "react";
           }}
         >
           <NavBar/>
-          <Card_simulado/>
+          {id !== undefined && <Card_simulado id={id} />}
+          
     
         </Box>
     );
