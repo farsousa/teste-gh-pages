@@ -23,11 +23,12 @@ const CardSimulado = ({id}:materia) => { {/*Aqui é o Id da matéria, só serve 
   const [textoBtnResponder, setTextoBtnResponder] = useState("Responder")
   const [questoesSimuladoIndividual,setQuestoesSimuladoIndividual] = useState<questaoDetalhada[]>()
   const [controlaQuestoesSimulado, setcontrolaQuestoesSimulado] = useState(0);
+  const [radioButtonMarcadoUsuario, setRadioButtonMarcadoUsuario] = useState("");
+  const [feedback, setFeedback] = useState("");
   
   const [timeLeft, setTimeLeft] = useState(2400);
   
   useEffect( () => {
-    console.log(id)
     api
     .post("/simulado",{
        "idMateria": id
@@ -38,10 +39,25 @@ const CardSimulado = ({id}:materia) => { {/*Aqui é o Id da matéria, só serve 
     });
     
   }, []);
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRadioButtonMarcadoUsuario(event.target.value);
+};
   function ControlaBtnReponderProxima(){
     if(textoBtnResponder ==="Responder"){
+      if(radioButtonMarcadoUsuario===(questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].resposta)){
+        setFeedback("Parabéns, você acertou")
+      }else{
+      setFeedback("Você errou")
+      }
       setTextoBtnResponder("Próxima")
+      
   }else{ 
+    if(questoesSimuladoIndividual && questoesSimuladoIndividual.length-1 === controlaQuestoesSimulado){
+      setcontrolaQuestoesSimulado(controlaQuestoesSimulado)
+    }else{
+      setcontrolaQuestoesSimulado(controlaQuestoesSimulado+1)
+    }
+    setFeedback('')
     setTextoBtnResponder("Responder")
   }
   }
@@ -64,20 +80,20 @@ const CardSimulado = ({id}:materia) => { {/*Aqui é o Id da matéria, só serve 
       <CardContent>
         
         <Typography variant="h6" gutterBottom>{questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].enunciado}:</Typography>
-        <RadioGroup name="radio-buttons-group" >
+        <RadioGroup name="radio-buttons-group" value={radioButtonMarcadoUsuario} onChange={handleRadioChange}>
             <ItemQuestao texto={questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].alternativa1}></ItemQuestao>
             <ItemQuestao texto={questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].alternativa2}></ItemQuestao>
             <ItemQuestao texto={questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].alternativa3}></ItemQuestao>
             <ItemQuestao texto={questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].alternativa4}></ItemQuestao>
         </RadioGroup>
+        {feedback}
       </CardContent>
 
       <CardContent>
         <Grid container justifyContent="space-between">
-          <Button variant="contained" disabled>Anterior</Button>
          
-          <Button variant="contained" color="error" >Encerrar o Simulado</Button>
-          <Button variant="contained" onClick={ControlaBtnReponderProxima}>{textoBtnResponder}</Button>
+          <Button variant="contained" onClick={ControlaBtnReponderProxima} sx={{fontWeight:"bold"}}>{textoBtnResponder}</Button>
+          <Button variant="contained" sx={{bgcolor:"#e34e47", fontWeight:"bold"}} >Encerrar o Simulado</Button>
         </Grid>
       </CardContent>
     </Card>
