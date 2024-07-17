@@ -1,7 +1,7 @@
 import { FormControlLabel, Radio } from "@mui/material";
 
   type TextoItem = {
-    texto: string
+    texto: string | undefined
   }
   
   const ItemQuestao = ({texto}:TextoItem)=>{

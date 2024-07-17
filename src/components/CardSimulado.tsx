@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {  Box, Typography, Card, CardContent, Grid, Button, Divider, FormGroup, FormControlLabel, Checkbox, RadioGroup } from '@mui/material';
 import ItemQuestao from './ItemQuestao';
 import api from '../service/Api';
 
 type materia ={
-  id:string
+  id:string | null
 }
 type questaoDetalhada = {
-  "objeto": {
     "id": string
     "enunciado": string 
     "linkImagem": string
@@ -18,40 +17,27 @@ type questaoDetalhada = {
     "resposta": string;
     "explicacao":  string;
     "nomeMateria": string;
-  },
-  "mensagem": string;
-
 }
 const CardSimulado = ({id}:materia) => { {/*Aqui é o Id da matéria, só serve para gerar o simulado*/}
 
-  const [textoBtnResponder, setTextoBtnResponder] = useState<string>("Responder")
-  const [timeLeft, setTimeLeft] = useState<number>(2400);
-  const [questoesSimuladoIndividual,setQuestoesSimuladoIndividual] = useState<[] | null>([])
-  const [questaoDetalhada, setQuestaoDetalhada] = useState<questaoDetalhada>()
+  const [textoBtnResponder, setTextoBtnResponder] = useState("Responder")
+  const [questoesSimuladoIndividual,setQuestoesSimuladoIndividual] = useState<questaoDetalhada[]>()
+  const [controlaQuestoesSimulado, setcontrolaQuestoesSimulado] = useState(0);
+  
+  const [timeLeft, setTimeLeft] = useState(2400);
   
   useEffect( () => {
+    console.log(id)
     api
     .post("/simulado",{
        "idMateria": id
-    },)
+    })
     .then((response) =>  setQuestoesSimuladoIndividual(response.data.objeto.questoes))
     .catch((err) => {  
       console.error("ops! ocorreu um erro" + err);
     });
-    consultaQuestao()
+    
   }, []);
- 
-   function consultaQuestao(){
-    api
-    .get(`/questao/${id}`)
-    .then((response) =>  setQuestaoDetalhada(response.data))
-    .catch((err) => {  
-      console.error("ops! ocorreu um erro" + err);
-    });
-    console.log("questão detalhada "+JSON.stringify(questaoDetalhada?.objeto))
-   }
- 
-
   function ControlaBtnReponderProxima(){
     if(textoBtnResponder ==="Responder"){
       setTextoBtnResponder("Próxima")
@@ -74,15 +60,15 @@ const CardSimulado = ({id}:materia) => { {/*Aqui é o Id da matéria, só serve 
       </CardContent>
 
       <Divider />
-
       {/* Conteúdo da pergunta e opções de resposta */}
       <CardContent>
-        <Typography variant="h6" gutterBottom>Conduzir veículo com defeito no sistema de iluminação ou sinalização constitui infração:</Typography>
+        
+        <Typography variant="h6" gutterBottom>{questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].enunciado}:</Typography>
         <RadioGroup name="radio-buttons-group" >
-            <ItemQuestao texto="Grave"></ItemQuestao>
-            <ItemQuestao texto="Gravíssima"></ItemQuestao>
-            <ItemQuestao texto="Leve"></ItemQuestao>
-            <ItemQuestao texto="Média"></ItemQuestao>
+            <ItemQuestao texto={questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].alternativa1}></ItemQuestao>
+            <ItemQuestao texto={questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].alternativa2}></ItemQuestao>
+            <ItemQuestao texto={questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].alternativa3}></ItemQuestao>
+            <ItemQuestao texto={questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].alternativa4}></ItemQuestao>
         </RadioGroup>
       </CardContent>
 

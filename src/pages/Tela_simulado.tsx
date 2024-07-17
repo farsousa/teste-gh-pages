@@ -1,8 +1,6 @@
 import Box from "@mui/material/Box";
 import Card_simulado from '../components/CardSimulado'
 import NavBar from "../components/NavBar";
-import api from "../service/Api"
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 
@@ -10,11 +8,10 @@ import { useParams } from "react-router-dom";
   
   const {id} = useParams();
   
-  
     return (
         <Box
           className="body"
-          sx={{
+          sx={{ 
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -24,7 +21,7 @@ import { useParams } from "react-router-dom";
           }}
         >
           <NavBar/>
-          {id !== undefined && <Card_simulado id={"d9e0f1g2-h3i4-j5k6-l7m8-n9o0p1q2"} />}
+          {id && <Card_simulado id={id} />}
           
     
         </Box>
