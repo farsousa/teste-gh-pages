@@ -79,7 +79,7 @@ const CardSimulado = ({id}:materia) => { {/*Aqui é o Id da matéria, só serve 
       {/* Conteúdo da pergunta e opções de resposta */}
       <CardContent>
         
-        <Typography variant="h6" gutterBottom>{questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].enunciado}:</Typography>
+        <Typography variant="h6" gutterBottom>{questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].enunciado}</Typography>
         <RadioGroup name="radio-buttons-group" value={radioButtonMarcadoUsuario} onChange={handleRadioChange}>
             <ItemQuestao texto={questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].alternativa1}></ItemQuestao>
             <ItemQuestao texto={questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].alternativa2}></ItemQuestao>
