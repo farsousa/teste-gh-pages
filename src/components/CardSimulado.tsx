@@ -148,7 +148,7 @@ const CardSimulado = ({ id }: materia) => {
   return (
     <Card
       variant="outlined"
-      sx={{ width: 500, minHeight: 400, margin: "auto", marginTop: 15 }}
+      sx={{ width: 500, minHeight: 300, margin: "auto", marginTop: 15 }}
     >
       {/* Cabeçalho com temporizador e contagem de respostas */}
       <CardContent>
@@ -171,7 +171,7 @@ const CardSimulado = ({ id }: materia) => {
 
       <Divider />
       {/* Conteúdo da pergunta e opções de resposta */}
-      <CardContent>
+      <CardContent sx={{ pl: "4%" }}>
         <Typography variant="h6" gutterBottom>
           {questoesSimuladoIndividual &&
             questoesSimuladoIndividual[controlaQuestoesSimulado].enunciado}
@@ -215,21 +215,29 @@ const CardSimulado = ({ id }: materia) => {
         </Typography>
       </CardContent>
 
-      <CardContent>
-        <Accordion>
+      <CardContent sx={{ p: 0, pl: "3%", pr: "3%" }}>
+        <Accordion sx={{ mb: "4%" }}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1-content"
             id="panel1-header"
           >
-            Comentário da questão
+            <Typography
+              variant="overline"
+              color="initial"
+              sx={{ fontWeight: "bold" }}
+            >
+              Comentário
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            {questoesSimuladoIndividual &&
-              questoesSimuladoIndividual[controlaQuestoesSimulado].explicacao}
+            <Typography>
+              {questoesSimuladoIndividual &&
+                questoesSimuladoIndividual[controlaQuestoesSimulado].explicacao}
+            </Typography>
           </AccordionDetails>
         </Accordion>
-        <Grid container justifyContent="space-between">
+        <Grid container id="roodape" justifyContent="space-between">
           <Button
             variant={variacaoBtnResponder}
             onClick={ControlaBtnResponderProxima}
