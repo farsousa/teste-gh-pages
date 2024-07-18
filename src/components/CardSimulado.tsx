@@ -34,9 +34,6 @@ type questaoDetalhada = {
   nomeMateria: string;
 };
 const CardSimulado = ({ id }: materia) => {
-  {
-    /*Aqui é o Id da matéria, só serve para gerar o simulado*/
-  }
 
   const [textoBtnResponder, setTextoBtnResponder] = useState("Responder");
   const [questoesSimuladoIndividual, setQuestoesSimuladoIndividual] =
@@ -64,6 +61,7 @@ const CardSimulado = ({ id }: materia) => {
   const [variacaoBtnResponder, setVariacaoBtnResponder] = useState<
     "contained" | "outlined" | "text"
   >("contained");
+  const [ComentarioDesativado, setComentarioDesativado] = useState(true);
   useEffect(() => {
     api
       .post("/simulado", {
@@ -75,13 +73,14 @@ const CardSimulado = ({ id }: materia) => {
       .catch((err: AxiosError) => {
         console.error("ops! ocorreu um erro" + err);
       });
-  }, []);
+  }, [id]);
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRadioButtonMarcadoUsuario(event.target.value);
   };
 
   function ControlaBtnResponderProxima() {
     if (textoBtnResponder === "Responder") {
+      setTextoBtnResponder("Próxima");
       if (
         radioButtonMarcadoUsuario ===
         (questoesSimuladoIndividual &&
@@ -122,11 +121,16 @@ const CardSimulado = ({ id }: materia) => {
       setVariacaoBtnResponder("contained");
       setBordaBtnResponder("");
       setColorBtnResponder("white");
-      setTextoBtnResponder("Próxima");
+      setComentarioDesativado(false)
+      console.log(textoBtnResponder)
+      
     } else {
+      console.log(textoBtnResponder)
       setBordaBtnResponder("1px solid gray");
       setVariacaoBtnResponder("outlined");
       setColorBtnResponder("gray");
+      setComentarioDesativado(true)
+      setRadioButtonMarcadoUsuario("")
       if (
         questoesSimuladoIndividual &&
         questoesSimuladoIndividual.length - 1 === controlaQuestoesSimulado
@@ -172,6 +176,9 @@ const CardSimulado = ({ id }: materia) => {
       <Divider />
       {/* Conteúdo da pergunta e opções de resposta */}
       <CardContent sx={{ pl: "4%" }}>
+      <Typography variant="h6" gutterBottom>
+          Resolver o bug do botão responder
+        </Typography>
         <Typography variant="h6" gutterBottom>
           {questoesSimuladoIndividual &&
             questoesSimuladoIndividual[controlaQuestoesSimulado].enunciado}
@@ -216,7 +223,7 @@ const CardSimulado = ({ id }: materia) => {
       </CardContent>
 
       <CardContent sx={{ p: 0, pl: "3%", pr: "3%" }}>
-        <Accordion sx={{ mb: "4%" }}>
+        <Accordion disabled={ComentarioDesativado} sx={{ mb: "4%" }}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1-content"
