@@ -62,6 +62,10 @@ const CardSimulado = ({ id }: materia) => {
     "contained" | "outlined" | "text"
   >("contained");
   const [ComentarioDesativado, setComentarioDesativado] = useState(true);
+  const [contQuestoesCertas, setContQuestoesCertas] = useState(0);
+  const [contQuestoesErradas, setContQuestoesErradas] = useState(0);
+  
+  
   useEffect(() => {
     api
       .post("/simulado", {
@@ -87,7 +91,9 @@ const CardSimulado = ({ id }: materia) => {
           questoesSimuladoIndividual[controlaQuestoesSimulado].resposta)
       ) {
         setFeedback("Parabéns, você acertou");
+        setContQuestoesCertas(contQuestoesCertas+1)
       } else {
+        setContQuestoesErradas(contQuestoesErradas+1)
         setFeedback("Você errou");
       }
       (questoesSimuladoIndividual &&
@@ -164,7 +170,7 @@ const CardSimulado = ({ id }: materia) => {
           }}
         >
           <Typography variant="body2" color="textSecondary">
-            Acertos: | Erros:{" "}
+          <span style={{color:"green"}}>Acertos: {contQuestoesCertas}</span>  | <span style={{color:"red"}}>Erros:{contQuestoesErradas}</span>
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: "bold", fontSize: 15 }}>
             Tempo Restante: {Math.floor(timeLeft / 60)}:
