@@ -189,7 +189,7 @@ const CardSimulado = ({ id }: materia) => {
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       />
       {/* Cabeçalho com temporizador e contagem de respostas */}
-      <CardContent>
+      <CardContent sx={{pt:1, pb:1}}>
         <Box
           sx={{
             display: "flex",
@@ -209,10 +209,8 @@ const CardSimulado = ({ id }: materia) => {
 
       <Divider />
       {/* Conteúdo da pergunta e opções de resposta */}
-      <CardContent sx={{ pl: "4%" }}>
-      <Typography variant="h6" gutterBottom>
-          Resolver o bug do botão responder
-        </Typography>
+      <CardContent sx={{ pl: "4%" ,pt:1}}>
+      
         <Typography variant="h6" gutterBottom>
           {questoesSimuladoIndividual &&
             questoesSimuladoIndividual[controlaQuestoesSimulado].enunciado}
