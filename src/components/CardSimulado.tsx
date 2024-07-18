@@ -63,7 +63,7 @@ const CardSimulado = ({id}:materia) => { {/*Aqui é o Id da matéria, só serve 
   }
    
   return (
-    <Card variant="outlined" sx={{ minWidth: 400, maxWidth: 600, margin: 'auto', marginTop: 15 }}>
+    <Card variant="outlined" sx={{ width: 500, minHeight:400, margin: 'auto', marginTop: 15 }}>
       {/* Cabeçalho com temporizador e contagem de respostas */}
       <CardContent>
           <Box sx={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
@@ -86,7 +86,7 @@ const CardSimulado = ({id}:materia) => { {/*Aqui é o Id da matéria, só serve 
             <ItemQuestao texto={questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].alternativa3}></ItemQuestao>
             <ItemQuestao texto={questoesSimuladoIndividual && questoesSimuladoIndividual[controlaQuestoesSimulado].alternativa4}></ItemQuestao>
         </RadioGroup>
-        {feedback}
+        <Typography variant="body1" color="initial" sx={{height:6}}>{feedback}</Typography>
       </CardContent>
 
       <CardContent>

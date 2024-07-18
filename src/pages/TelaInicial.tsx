@@ -28,7 +28,7 @@ interface Materia {
   quantidadeQuestoesSimuladoGeral: number;
 }
 
-const Tela_inicial = () => {
+const TelaInicial = () => {
   const [listaMaterias, setListaMaterias] = useState<Materia[]>([]);
 
 useEffect(() => {
@@ -100,4 +100,4 @@ useEffect(() => {
     </Box>
   );
 };
-export default Tela_inicial;
+export default TelaInicial;

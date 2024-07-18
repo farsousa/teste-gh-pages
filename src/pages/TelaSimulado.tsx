@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 import { useParams } from "react-router-dom";
 
 
- const Tela_simulado= () => {
+ const TelaSimulado= () => {
   
   const {id} = useParams();
   
@@ -27,4 +27,4 @@ import { useParams } from "react-router-dom";
         </Box>
     );
 };
-export default Tela_simulado
+export default TelaSimulado
