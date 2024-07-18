@@ -18,6 +18,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ItemQuestao from "./ItemQuestao";
 import api from "../service/api";
 import { AxiosResponse, AxiosError } from "axios";
+import { useParams } from "react-router-dom";
 type materia = {
   id: string | null;
 };
@@ -34,7 +35,6 @@ type questaoDetalhada = {
   nomeMateria: string;
 };
 const CardSimulado = ({ id }: materia) => {
-
   const [textoBtnResponder, setTextoBtnResponder] = useState("Responder");
   const [questoesSimuladoIndividual, setQuestoesSimuladoIndividual] =
     useState<questaoDetalhada[]>();
@@ -66,9 +66,13 @@ const CardSimulado = ({ id }: materia) => {
   
   
   useEffect(() => {
+    let idConvertido = null 
+    if(id !== "null"){
+      idConvertido = id
+    }
     api
       .post("/simulado", {
-        idMateria: id,
+        idMateria: idConvertido,
       })
       .then((response: AxiosResponse) =>
         setQuestoesSimuladoIndividual(response.data.objeto.questoes)
@@ -76,8 +80,8 @@ const CardSimulado = ({ id }: materia) => {
       .catch((err: AxiosError) => {
         console.error("ops! ocorreu um erro" + err);
       });
+      console.log(null)
   }, [id]);
-  console.log("testando id"+JSON.stringify(id))
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRadioButtonMarcadoUsuario(event.target.value);
   };

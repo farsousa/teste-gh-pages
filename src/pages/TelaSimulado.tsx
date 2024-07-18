@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 const TelaSimulado = () => {
   const { id } = useParams();
-
+  console.log("TelaSimulado "+ id)
   return (
     <Box
       className="body"
