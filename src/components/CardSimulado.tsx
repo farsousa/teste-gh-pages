@@ -159,7 +159,6 @@ const CardSimulado = ({ id }: materia) => {
       setValorAlertaAlternativa2(undefined);
       setValorAlertaAlternativa3(undefined);
       setValorAlertaAlternativa4(undefined);
-      setFeedback("");
       setTextoBtnResponder("Responder");
     }
     console.log(variacaoBtnResponder);
@@ -168,7 +167,7 @@ const CardSimulado = ({ id }: materia) => {
   return (
     <Card
       variant="outlined"
-      sx={{ width: 500, minHeight: 300, margin: "auto", marginTop: 15 }}
+      sx={{ width: 500, minHeight: 300, margin: "auto", marginTop: 10 }}
     >
       <Snackbar sx={{
           '& .MuiSnackbarContent-root': {
