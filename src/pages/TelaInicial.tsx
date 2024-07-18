@@ -4,11 +4,11 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import "@fontsource/dosis";
-import api from '../service/Api';
+import api from "../service/api";
 import { useEffect, useState } from "react";
-import CardMateria from "../components/CardMateria"
+import CardMateria from "../components/CardMateria";
 import NavBar from "../components/NavBar";
-
+import { AxiosResponse, AxiosError } from "axios";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -31,14 +31,14 @@ interface Materia {
 const TelaInicial = () => {
   const [listaMaterias, setListaMaterias] = useState<Materia[]>([]);
 
-useEffect(() => {
-  api
-    .get("/materia")
-    .then((response) => setListaMaterias(response.data.lista))
-    .catch((err) => {  
-      console.error("ops! ocorreu um erro" + err);
-    });
-}, []);
+  useEffect(() => {
+    api
+      .get("/materia")
+      .then((response: AxiosResponse) => setListaMaterias(response.data.lista))
+      .catch((err: AxiosError) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+  }, []);
 
   return (
     <Box
@@ -52,7 +52,7 @@ useEffect(() => {
         height: "100vh",
       }}
     >
-      <NavBar/>
+      <NavBar />
       <Button
         variant="contained"
         sx={{
@@ -91,10 +91,17 @@ useEffect(() => {
           spacing={4}
           sx={{ flexWrap: "wrap", width: "100%", mb: 10 }}
         >
-          {listaMaterias != undefined ? listaMaterias.map((materia) =>(
-            <CardMateria key={materia.id} id={materia.id} descricao={materia.descricao}
-            />
-          )) : <div> Carregando...</div>}
+          {listaMaterias != undefined ? (
+            listaMaterias.map((materia) => (
+              <CardMateria
+                key={materia.id}
+                id={materia.id}
+                descricao={materia.descricao}
+              />
+            ))
+          ) : (
+            <div> Carregando...</div>
+          )}
         </Grid>
       </Box>
     </Box>
