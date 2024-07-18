@@ -5,7 +5,6 @@ import {
   AlertColor,
   Box,
   styled,
-  Typography,
 } from "@mui/material";
 
 type Item = {
@@ -26,7 +25,7 @@ const ItemQuestao = ({ texto, tipoAlerta }: Item) => {
           control={<Radio />}
           label={texto}
           value={texto}
-          sx={{ h: 20 }}
+          sx={{ h: 20, mb: 0.5 }}
         />
       ) : (
         <Box sx={{ width: "100%", mb: 0.5 }}>

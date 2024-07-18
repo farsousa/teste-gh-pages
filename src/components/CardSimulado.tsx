@@ -9,7 +9,12 @@ import {
   Divider,
   RadioGroup,
   AlertColor,
+  Alert,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ItemQuestao from "./ItemQuestao";
 import api from "../service/api";
 import { AxiosResponse, AxiosError } from "axios";
@@ -211,6 +216,19 @@ const CardSimulado = ({ id }: materia) => {
       </CardContent>
 
       <CardContent>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"
+          >
+            Comentário da questão
+          </AccordionSummary>
+          <AccordionDetails>
+            {questoesSimuladoIndividual &&
+              questoesSimuladoIndividual[controlaQuestoesSimulado].explicacao}
+          </AccordionDetails>
+        </Accordion>
         <Grid container justifyContent="space-between">
           <Button
             variant={variacaoBtnResponder}
