@@ -264,7 +264,10 @@ const CardSimulado = ({ id }: materia) => {
           </Button>
           <Button
             variant="contained"
-            sx={{ background: "#ee3a20", fontWeight: "bold" }}
+            sx={{ background: "#ee3a20", fontWeight: "bold", '&:hover':{
+              backgroundColor:"#9a1f12"
+            },
+          }}
           >
             Encerrar o Simulado
           </Button>
