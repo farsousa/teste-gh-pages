@@ -54,7 +54,11 @@ const CardSimulado = ({ id }: materia) => {
   const [valorAlertaAlternativa4, setValorAlertaAlternativa4] = useState<
     AlertColor | undefined
   >();
-
+  const [bordaBtnResponder, setBordaBtnResponder] = useState("");
+  const [colorBtnResponder, setColorBtnResponder] = useState("white");
+  const [variacaoBtnResponder, setVariacaoBtnResponder] = useState<
+    "contained" | "outlined" | "text"
+  >("contained");
   useEffect(() => {
     api
       .post("/simulado", {
@@ -70,7 +74,8 @@ const CardSimulado = ({ id }: materia) => {
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRadioButtonMarcadoUsuario(event.target.value);
   };
-  function ControlaBtnReponderProxima() {
+
+  function ControlaBtnResponderProxima() {
     if (textoBtnResponder === "Responder") {
       if (
         radioButtonMarcadoUsuario ===
@@ -108,8 +113,15 @@ const CardSimulado = ({ id }: materia) => {
         questoesSimuladoIndividual[controlaQuestoesSimulado].resposta)
         ? setValorAlertaAlternativa4("error")
         : setValorAlertaAlternativa4("success");
+
+      setVariacaoBtnResponder("contained");
+      setBordaBtnResponder("");
+      setColorBtnResponder("white");
       setTextoBtnResponder("Próxima");
     } else {
+      setBordaBtnResponder("1px solid gray");
+      setVariacaoBtnResponder("outlined");
+      setColorBtnResponder("gray");
       if (
         questoesSimuladoIndividual &&
         questoesSimuladoIndividual.length - 1 === controlaQuestoesSimulado
@@ -125,8 +137,8 @@ const CardSimulado = ({ id }: materia) => {
       setFeedback("");
       setTextoBtnResponder("Responder");
     }
+    console.log(variacaoBtnResponder);
   }
-  function informaTipoAlert(texto: string | undefined | null) {}
 
   return (
     <Card
@@ -201,15 +213,19 @@ const CardSimulado = ({ id }: materia) => {
       <CardContent>
         <Grid container justifyContent="space-between">
           <Button
-            variant="contained"
-            onClick={ControlaBtnReponderProxima}
-            sx={{ fontWeight: "bold" }}
+            variant={variacaoBtnResponder}
+            onClick={ControlaBtnResponderProxima}
+            sx={{
+              fontWeight: "bold",
+              color: colorBtnResponder,
+              border: bordaBtnResponder,
+            }}
           >
             {textoBtnResponder}
           </Button>
           <Button
             variant="contained"
-            sx={{ bgcolor: "#e34e47", fontWeight: "bold" }}
+            sx={{ background: "#ee3a20", fontWeight: "bold" }}
           >
             Encerrar o Simulado
           </Button>

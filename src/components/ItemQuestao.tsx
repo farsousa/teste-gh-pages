@@ -5,6 +5,7 @@ import {
   AlertColor,
   Box,
   styled,
+  Typography,
 } from "@mui/material";
 
 type Item = {
@@ -50,6 +51,11 @@ const ItemQuestao = ({ texto, tipoAlerta }: Item) => {
                 flex: 1,
               }}
             />
+            {tipoAlerta === "success" ? (
+              <span>(Resposta Certa)</span>
+            ) : (
+              <span>(Resposta Errada)</span>
+            )}
           </CustomAlert>
         </Box>
       )}
