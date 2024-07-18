@@ -1,6 +1,4 @@
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import "@fontsource/dosis";
@@ -9,17 +7,9 @@ import { useEffect, useState } from "react";
 import CardMateria from "../components/CardMateria";
 import NavBar from "../components/NavBar";
 import { AxiosResponse, AxiosError } from "axios";
+import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
-const sm = 6; // define a quantidade de colunas no small screen
-const md = 4;
 
 interface Materia {
   id: string;
@@ -31,6 +21,7 @@ interface Materia {
 const TelaInicial = () => {
   const [listaMaterias, setListaMaterias] = useState<Materia[]>([]);
 
+const id = null;
   useEffect(() => {
     api
       .get("/materia")
@@ -40,6 +31,15 @@ const TelaInicial = () => {
       });
   }, []);
 
+  const CustomLink = styled(Link)({
+    textDecoration: 'none',
+    color: 'inherit',
+    '&:hover': {
+     textDecoration: 'none', 
+     color: 'inherit'
+    },
+    Height:"100%"
+  });
   return (
     <Box
       className="body"
@@ -53,6 +53,7 @@ const TelaInicial = () => {
       }}
     >
       <NavBar />
+      
       <Button
         variant="contained"
         sx={{
@@ -75,8 +76,10 @@ const TelaInicial = () => {
           marginTop: { xs: 70, sm: 20, md: 30, lg: 20, xl: 20 },
         }}
       >
-        Simulado Completo
+       <CustomLink to={`/simulado/${id}`}>  Simulado Completo </CustomLink>
+        
       </Button>
+      
       <Box
         sx={{
           flexGrow: 1,
@@ -91,7 +94,7 @@ const TelaInicial = () => {
           spacing={4}
           sx={{ flexWrap: "wrap", width: "100%", mb: 10 }}
         >
-          {listaMaterias != undefined ? (
+          {listaMaterias !== undefined ? (
             listaMaterias.map((materia) => (
               <CardMateria
                 key={materia.id}

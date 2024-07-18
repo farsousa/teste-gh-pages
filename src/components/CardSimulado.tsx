@@ -77,6 +77,7 @@ const CardSimulado = ({ id }: materia) => {
         console.error("ops! ocorreu um erro" + err);
       });
   }, [id]);
+  console.log("testando id"+JSON.stringify(id))
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRadioButtonMarcadoUsuario(event.target.value);
   };
