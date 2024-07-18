@@ -9,7 +9,6 @@ import {
   Divider,
   RadioGroup,
   AlertColor,
-  Alert,
   Accordion,
   AccordionSummary,
   AccordionDetails,
@@ -42,7 +41,6 @@ const CardSimulado = ({ id }: materia) => {
   const [controlaQuestoesSimulado, setcontrolaQuestoesSimulado] = useState(0);
   const [radioButtonMarcadoUsuario, setRadioButtonMarcadoUsuario] =
     useState("");
-  const [feedback, setFeedback] = useState("");
 
   const [timeLeft, setTimeLeft] = useState(2400);
   const [valorAlertaAlternativa1, setValorAlertaAlternativa1] = useState<
@@ -102,11 +100,10 @@ const CardSimulado = ({ id }: materia) => {
         (questoesSimuladoIndividual &&
           questoesSimuladoIndividual[controlaQuestoesSimulado].resposta)
       ) {
-        setFeedback("Parabéns, você acertou");
+      
         setContQuestoesCertas(contQuestoesCertas+1)
       } else {
         setContQuestoesErradas(contQuestoesErradas+1)
-        setFeedback("Você errou");
       }
       (questoesSimuladoIndividual &&
         questoesSimuladoIndividual[controlaQuestoesSimulado].alternativa1) !==
@@ -250,9 +247,6 @@ const CardSimulado = ({ id }: materia) => {
             tipoAlerta={valorAlertaAlternativa4}
           ></ItemQuestao>
         </RadioGroup>
-        <Typography variant="body1" color="initial" sx={{ height: 6 }}>
-          {feedback}
-        </Typography>
       </CardContent>
 
       <CardContent sx={{ p: 0, pl: "3%", pr: "3%" }}>
