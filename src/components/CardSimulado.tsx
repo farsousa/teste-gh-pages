@@ -13,6 +13,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Snackbar,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ItemQuestao from "./ItemQuestao";
@@ -81,10 +82,21 @@ const CardSimulado = ({ id }: materia) => {
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRadioButtonMarcadoUsuario(event.target.value);
   };
+  const [open, setOpen] = useState(false);
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   function ControlaBtnResponderProxima() {
     if (textoBtnResponder === "Responder") {
-      setTextoBtnResponder("Próxima");
+      if(radioButtonMarcadoUsuario===""){
+        handleClick()
+      }else{
+        setTextoBtnResponder("Próxima");
       if (
         radioButtonMarcadoUsuario ===
         (questoesSimuladoIndividual &&
@@ -129,6 +141,7 @@ const CardSimulado = ({ id }: materia) => {
       setColorBtnResponder("white");
       setComentarioDesativado(false)
       console.log(textoBtnResponder)
+      }
       
     } else {
       console.log(textoBtnResponder)
@@ -160,6 +173,20 @@ const CardSimulado = ({ id }: materia) => {
       variant="outlined"
       sx={{ width: 500, minHeight: 300, margin: "auto", marginTop: 15 }}
     >
+      <Snackbar sx={{
+          '& .MuiSnackbarContent-root': {
+            backgroundColor: 'red', // Cor de fundo desejada
+            color: 'white', // Cor do texto desejada
+            fontWeight:"Bold"
+          },
+          
+        }}
+        open={open}
+        autoHideDuration={1100}
+        onClose={handleClose}
+        message="Selecione uma das opções"
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      />
       {/* Cabeçalho com temporizador e contagem de respostas */}
       <CardContent>
         <Box
