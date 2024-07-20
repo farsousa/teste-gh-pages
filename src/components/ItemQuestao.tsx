@@ -50,11 +50,6 @@ const ItemQuestao = ({ texto, tipoAlerta }: Item) => {
                 flex: 1,
               }}
             />
-            {tipoAlerta === "success" ? (
-              <span>(Resposta Certa)</span>
-            ) : (
-              <span>(Resposta Errada)</span>
-            )}
           </CustomAlert>
         </Box>
       )}
