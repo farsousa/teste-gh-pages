@@ -19,7 +19,6 @@ import {
   DialogContentText,
   DialogActions,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ItemQuestao from "./ItemQuestao";
 import api from "../service/api";
 import { AxiosResponse, AxiosError } from "axios";
@@ -91,6 +90,8 @@ const CardSimulado = ({ id }: materia) => {
       });
       
       return () => {
+        setBordaBtnResponder("Responder")
+
 
       };
 
@@ -100,7 +101,7 @@ const CardSimulado = ({ id }: materia) => {
       setTimeLeft(prevTime => prevTime > 0 ? prevTime - 1 : 0);
     }, 1000);
 
-    // Limpa o intervalo quando o componente for desmontado ou o tempo acabar
+    
     return () => clearInterval(timer);
   },[])
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -208,7 +209,7 @@ const CardSimulado = ({ id }: materia) => {
   return (
     <Card
       variant="outlined"
-      sx={{ width: 500, minHeight: 300, margin: "auto", marginTop: 10 }}
+      sx={{ width: { xs: 300, sm: 400, md: 500 }, minHeight: 300, margin: "auto", marginTop: 10, overflow: 'auto' }}
     >
       <Snackbar sx={{
         '& .MuiSnackbarContent-root': {
