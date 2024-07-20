@@ -23,7 +23,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ItemQuestao from "./ItemQuestao";
 import api from "../service/api";
 import { AxiosResponse, AxiosError } from "axios";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
+import ChatIcon from '@mui/icons-material/Chat';
 type materia = {
   id: string | null;
 };
@@ -50,7 +51,7 @@ const CardSimulado = ({ id }: materia) => {
   const [timeLeft, setTimeLeft] = useState(2400);
   const [valorAlertaAlternativa1, setValorAlertaAlternativa1] = useState<
     AlertColor | undefined
-  >();
+  >(undefined);
   const [valorAlertaAlternativa2, setValorAlertaAlternativa2] = useState<
     AlertColor | undefined
   >();
@@ -71,6 +72,8 @@ const CardSimulado = ({ id }: materia) => {
   const [openSnack, setOpenSnack] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const navegate = useNavigate();
+  const [expandido, setExpandido] = useState(false);
+  
   useEffect(() => {
     let idConvertido = null 
     if(id !== "null"){
@@ -86,8 +89,20 @@ const CardSimulado = ({ id }: materia) => {
       .catch((err: AxiosError) => {
         console.error("ops! ocorreu um erro" + err);
       });
-      console.log(null)
+      
+      return () => {
+
+      };
+
   }, [id]);
+  useEffect(()=>{
+    const timer = setInterval(() => {
+      setTimeLeft(prevTime => prevTime > 0 ? prevTime - 1 : 0);
+    }, 1000);
+
+    // Limpa o intervalo quando o componente for desmontado ou o tempo acabar
+    return () => clearInterval(timer);
+  },[])
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRadioButtonMarcadoUsuario(event.target.value);
   };
@@ -109,6 +124,9 @@ const CardSimulado = ({ id }: materia) => {
   const handleConfirm = () => {
     navegate("/pagina-inicial")
   }
+  const handleExpansao = (expandido:any) => {
+    setExpandido(expandido);
+  };
   function ControlaBtnResponderProxima() {
     if (textoBtnResponder === "Responder") {
       if(radioButtonMarcadoUsuario===""){
@@ -161,6 +179,9 @@ const CardSimulado = ({ id }: materia) => {
       }
       
     } else {
+      if(radioButtonMarcadoUsuario===""){
+        handleClickOpenSnack()
+      }
       console.log(textoBtnResponder)
       setBordaBtnResponder("1px solid gray");
       setVariacaoBtnResponder("outlined");
@@ -215,8 +236,8 @@ const CardSimulado = ({ id }: materia) => {
           <Typography variant="body2" color="textSecondary">
           <span style={{color:"green"}}>Acertos: {contQuestoesCertas}</span>  | <span style={{color:"red"}}>Erros:{contQuestoesErradas}</span>
           </Typography>
-          <Typography variant="h6" sx={{ fontWeight: "bold", fontSize: 15 }}>
-            Tempo Restante: {Math.floor(timeLeft / 60)}:
+          <Typography variant="h6" sx={{ fontWeight: "bold", fontSize: 15,pr:2 }}>
+             {Math.floor(timeLeft / 60)}:
             {("0" + (timeLeft % 60)).slice(-2)}
           </Typography>
         </Box>
@@ -267,18 +288,17 @@ const CardSimulado = ({ id }: materia) => {
       </CardContent>
 
       <CardContent sx={{ p: 0, pl: "3%", pr: "3%" }}>
-        <Accordion disabled={ComentarioDesativado} sx={{ mb: "4%" }}>
+        <Accordion expanded={expandido} disabled={ComentarioDesativado} onChange={()=>handleExpansao(!expandido)}sx={{ mb: "4%" }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1-content"
-            id="panel1-header"
+            sx={{ height: 30, minHeight: 0 , pt:'3%', display:'flex', justifyContent:'center'}}
+            
           >
             <Typography
               variant="overline"
               color="initial"
-              sx={{ fontWeight: "bold" }}
+              sx={{ fontWeight: "bold", padding:0,}}
             >
-              Comentário
+             <ChatIcon sx={{fontSize:20,mt:"3%"}}/> 
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
