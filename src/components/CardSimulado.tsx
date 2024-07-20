@@ -13,12 +13,17 @@ import {
   AccordionSummary,
   AccordionDetails,
   Snackbar,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ItemQuestao from "./ItemQuestao";
 import api from "../service/api";
 import { AxiosResponse, AxiosError } from "axios";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 type materia = {
   id: string | null;
 };
@@ -63,8 +68,9 @@ const CardSimulado = ({ id }: materia) => {
   const [ComentarioDesativado, setComentarioDesativado] = useState(true);
   const [contQuestoesCertas, setContQuestoesCertas] = useState(0);
   const [contQuestoesErradas, setContQuestoesErradas] = useState(0);
-  
-  
+  const [openSnack, setOpenSnack] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const navegate = useNavigate();
   useEffect(() => {
     let idConvertido = null 
     if(id !== "null"){
@@ -85,19 +91,28 @@ const CardSimulado = ({ id }: materia) => {
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRadioButtonMarcadoUsuario(event.target.value);
   };
-  const [open, setOpen] = useState(false);
 
-  const handleClick = () => {
-    setOpen(true);
+  const handleClickOpenSnack = () => {
+    setOpenSnack(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseSnack = () => {
+    setOpenSnack(false);
   };
+  const handleClickOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+  const handleConfirm = () => {
+    navegate("/pagina-inicial")
+  }
   function ControlaBtnResponderProxima() {
     if (textoBtnResponder === "Responder") {
       if(radioButtonMarcadoUsuario===""){
-        handleClick()
+        handleClickOpenSnack()
       }else{
         setTextoBtnResponder("Próxima");
       if (
@@ -175,16 +190,16 @@ const CardSimulado = ({ id }: materia) => {
       sx={{ width: 500, minHeight: 300, margin: "auto", marginTop: 10 }}
     >
       <Snackbar sx={{
-          '& .MuiSnackbarContent-root': {
-            backgroundColor: 'red', // Cor de fundo desejada
-            color: 'white', // Cor do texto desejada
-            fontWeight:"Bold"
+        '& .MuiSnackbarContent-root': {
+          backgroundColor: 'red', // Cor de fundo desejada
+          color: 'white', // Cor do texto desejada
+          fontWeight:"Bold"
           },
           
         }}
-        open={open}
+        open={openSnack}
         autoHideDuration={1100}
-        onClose={handleClose}
+        onClose={handleCloseSnack}
         message="Selecione uma das opções"
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       />
@@ -285,12 +300,34 @@ const CardSimulado = ({ id }: materia) => {
           >
             {textoBtnResponder}
           </Button>
+            <Dialog
+              open={openModal}
+              onClose={handleCloseModal}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Encerrar Simulado"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Tem certeza que quer encerrar o simulado? Você voltará para a página inicial.
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleCloseModal} color="primary">
+                  NÃO
+                </Button>
+                <Button onClick={handleConfirm} color="primary" autoFocus>
+                  SIM
+                </Button>
+              </DialogActions>
+            </Dialog>
           <Button
             variant="contained"
             sx={{ background: "#ee3a20", fontWeight: "bold", '&:hover':{
               backgroundColor:"#9a1f12"
             },
           }}
+          onClick={handleClickOpenModal}
           >
             Encerrar o Simulado
           </Button>
