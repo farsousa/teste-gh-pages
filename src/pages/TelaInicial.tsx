@@ -8,7 +8,7 @@ import CardMateria from "../components/CardMateria";
 import NavBar from "../components/NavBar";
 import { AxiosResponse, AxiosError } from "axios";
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 interface Materia {
@@ -20,8 +20,12 @@ interface Materia {
 
 const TelaInicial = () => {
   const [listaMaterias, setListaMaterias] = useState<Materia[]>([]);
+  const navegate = useNavigate()
+  
+  const navega =()=>{
+    navegate(`/simulado`, {state:{i:null}})
+  }
 
-const id = null;
   useEffect(() => {
     api
       .get("/materia")
@@ -31,15 +35,7 @@ const id = null;
       });
   }, []);
 
-  const CustomLink = styled(Link)({
-    textDecoration: 'none',
-    color: 'inherit',
-    '&:hover': {
-     textDecoration: 'none', 
-     color: 'inherit'
-    },
-    Height:"100%"
-  });
+  
   return (
     <Box
       className="body"
@@ -75,8 +71,9 @@ const id = null;
           display: "flex",
           marginTop: { xs: 70, sm: 20, md: 30, lg: 20, xl: 20 },
         }}
+        onClick={navega}
       >
-       <CustomLink to={`/simulado/${id}`}>  Simulado Completo </CustomLink>
+       Simulado Geral
         
       </Button>
       

@@ -22,7 +22,7 @@ import {
 import ItemQuestao from "./ItemQuestao";
 import api from "../service/api";
 import { AxiosResponse, AxiosError } from "axios";
-import { useNavigate} from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 import ChatIcon from '@mui/icons-material/Chat';
 type materia = {
   id: string | null;
@@ -72,30 +72,26 @@ const CardSimulado = ({ id }: materia) => {
   const [openModal, setOpenModal] = useState(false);
   const navegate = useNavigate();
   const [expandido, setExpandido] = useState(false);
-  
+  const location = useLocation();
+  const { i = null } = location.state || {};
   useEffect(() => {
-    let idConvertido = null 
-    if(id !== "null"){
-      idConvertido = id
-    }
-    api
-      .post("/simulado", {
-        idMateria: idConvertido,
-      })
-      .then((response: AxiosResponse) =>
-        setQuestoesSimuladoIndividual(response.data.objeto.questoes)
-      )
-      .catch((err: AxiosError) => {
-        console.error("ops! ocorreu um erro" + err);
-      });
-      
-      return () => {
-        setBordaBtnResponder("Responder")
+    
+      api
+        .post('/simulado', {
+          idMateria: i,
+        })
+        .then((response: AxiosResponse) => 
+          setQuestoesSimuladoIndividual(response.data.objeto.questoes)
+        )
+        .catch((err: AxiosError) => {
+          console.error('ops! ocorreu um erro' + err);
+        });
+    
 
-
-      };
-
-  }, [id]);
+    return () => {
+      setBordaBtnResponder('Responder');
+    };
+  }, [i]);
   useEffect(()=>{
     const timer = setInterval(() => {
       setTimeLeft(prevTime => prevTime > 0 ? prevTime - 1 : 0);
@@ -205,7 +201,7 @@ const CardSimulado = ({ id }: materia) => {
     }
     console.log(variacaoBtnResponder);
   }
-
+ 
   return (
     <Card
       variant="outlined"

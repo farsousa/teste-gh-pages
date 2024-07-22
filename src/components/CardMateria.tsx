@@ -6,7 +6,7 @@ import SosOutlinedIcon from "@mui/icons-material/SosOutlined";
 import { styled } from "@mui/material/styles";
 
 import { Grid, Paper, Typography } from "@mui/material";
-import {Link} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -14,6 +14,12 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
+  cursor: 'pointer',
+  transition: 'box-shadow 0.3s ease-in-out', // Adiciona transição suave
+
+  '&:hover': {
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)', // Adiciona sombra ao passar o mouse
+  },
 }));
 
 const sm = 6; // Define a quantidade de colunas no small screen
@@ -25,6 +31,10 @@ type infoMateria = {
 }
 
 const CardMateria = ({id,descricao}:infoMateria) =>{
+  const navegate = useNavigate()
+  const navega =()=>{
+    navegate('/simulado', {state:{i:id}})
+  }
   let iconeMateria;
   if (descricao === 'Meio Ambiente e Cidadania') {
     iconeMateria = <EmojiNatureOutlinedIcon style={{ fontSize: 70 }} />;
@@ -39,13 +49,8 @@ const CardMateria = ({id,descricao}:infoMateria) =>{
     iconeMateria = <MenuBookOutlinedIcon style={{ fontSize: 70 }} />;
   }
   return (
-    <Grid item xs={12} sm={sm} md={md}>
-            <Link
-              to={`/simulado/${id}`}
-              style={{
-                textDecoration: "none",
-              }}
-            >
+    <Grid item xs={12} sm={sm} md={md} >
+            
               <Item
                 sx={{
                   display: "flex",
@@ -53,11 +58,12 @@ const CardMateria = ({id,descricao}:infoMateria) =>{
                   justifyContent: "center",
                   alignItems: "center",
                 }}
+                onClick={navega}
               >
                 {iconeMateria}
                 <Typography variant="h6">{descricao}</Typography>
               </Item>
-            </Link>
+              
           </Grid>
   );
 }

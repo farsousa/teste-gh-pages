@@ -1,11 +1,12 @@
 import Box from "@mui/material/Box";
 import CardSimulado from "../components/CardSimulado";
 import NavBar from "../components/NavBar";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const TelaSimulado = () => {
-  const { id } = useParams();
-  console.log("TelaSimulado "+ id)
+  const location = useLocation();
+  const {i=null} = location.state
+  console.log("TelaSimulado "+ JSON.stringify(i))
   return (
     <Box
       className="body"
@@ -19,7 +20,7 @@ const TelaSimulado = () => {
       }}
     >
       <NavBar />
-      {id && <CardSimulado id={id} />}
+      {<CardSimulado id={i} />}
     </Box>
   );
 };
