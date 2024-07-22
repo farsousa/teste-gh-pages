@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 import CardMateria from "../components/CardMateria";
 import NavBar from "../components/NavBar";
 import { AxiosResponse, AxiosError } from "axios";
-import styled from "@emotion/styled";
-import { Link, useNavigate } from "react-router-dom";
+
+import {useNavigate } from "react-router-dom";
 
 
 interface Materia {
