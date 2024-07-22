@@ -9,6 +9,7 @@ import TelaSimulado from '../pages/TelaSimulado';
         <Routes>
             <Route path='/pagina-inicial' element={<TelaInicial/>} />
             <Route path='/simulado' element={<TelaSimulado/>} />
+            <Route path='/resultadoSimulado' element={<><h1>Tela Resultado</h1></>} />
             <Route path='*' element={<Navigate to = "pagina-inicial" />}/>
         </Routes>
     );
