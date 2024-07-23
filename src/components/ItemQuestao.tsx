@@ -28,7 +28,7 @@ const ItemQuestao = ({ texto, tipoAlerta }: Item) => {
           sx={{ h: 20, mb: 0.5 }}
         />
       ) : (
-        <Box sx={{ width: "100%", mb: 0.5 }}>
+        <Box sx={{ width: "80%", mb: 0.5 }}>
           <CustomAlert
             severity={tipoAlerta}
             sx={{

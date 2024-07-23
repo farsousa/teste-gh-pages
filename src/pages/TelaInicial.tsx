@@ -55,7 +55,7 @@ const TelaInicial = () => {
         sx={{
           width: { xs: 300, sm: 300, md: 300, lg: 300, xl: 300 },
           mb: 7,
-          mt: 20,
+          mt: 5,
           padding: 2,
           color: "white",
           fontWeight: "bold",
@@ -69,7 +69,7 @@ const TelaInicial = () => {
           },
           backgroundColor: "gray",
           display: "flex",
-          marginTop: { xs: 70, sm: 20, md: 30, lg: 20, xl: 20 },
+          marginTop: { xs: 50, sm: 30, md: 30, lg: 20, xl: 20 },
         }}
         onClick={navega}
       >
@@ -80,8 +80,8 @@ const TelaInicial = () => {
       <Box
         sx={{
           flexGrow: 1,
-          paddingRight: { xs: 4, sm: 6, md: 10, lg: 10, xl: 10 },
-          paddingLeft: { xs: 4, sm: 6, md: 10, lg: 10, xl: 10 },
+          paddingRight: { xs: 4, sm: 4, md: 2, lg: 10, xl: 10 },
+          paddingLeft: { xs: 4, sm: 4, md: 2, lg: 10, xl: 10 },
         }}
         className="main"
       >
@@ -89,7 +89,7 @@ const TelaInicial = () => {
           className="card_group"
           container
           spacing={4}
-          sx={{ flexWrap: "wrap", width: "100%", mb: 10 }}
+          sx={{ flexWrap: "wrap", width: "100%", mb: 10, paddingLeft:0}}
         >
           {listaMaterias !== undefined ? (
             listaMaterias.map((materia) => (

@@ -73,9 +73,9 @@ const CardSimulado = ({ id }: materia) => {
   const navegate = useNavigate();
   const [expandido, setExpandido] = useState(false);
   const location = useLocation();
-  const { i = null } = location.state || {};
+  const { i } = location.state || {};
   useEffect(() => {
-    
+    if(i!==null || i!== undefined){
       api
         .post('/simulado', {
           idMateria: i,
@@ -86,7 +86,18 @@ const CardSimulado = ({ id }: materia) => {
         .catch((err: AxiosError) => {
           console.error('ops! ocorreu um erro' + err);
         });
-    
+      }else{
+        api
+        .post('/simulado', {
+          idMateria: null,
+        })
+        .then((response: AxiosResponse) => 
+          setQuestoesSimuladoIndividual(response.data.objeto.questoes)
+        )
+        .catch((err: AxiosError) => {
+          console.error('ops! ocorreu um erro' + err);
+        });
+      }
 
     return () => {
       setBordaBtnResponder('Responder');

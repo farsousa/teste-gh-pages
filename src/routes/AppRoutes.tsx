@@ -1,6 +1,7 @@
 import {Routes, Route, Navigate} from 'react-router-dom'
 import TelaInicial from '../pages/TelaInicial';
 import TelaSimulado from '../pages/TelaSimulado';
+import TelaResultadoSimulado from '../pages/TelaResultadoSimulado';
 
   const AppRoutes = () => {
 
@@ -9,7 +10,7 @@ import TelaSimulado from '../pages/TelaSimulado';
         <Routes>
             <Route path='/pagina-inicial' element={<TelaInicial/>} />
             <Route path='/simulado' element={<TelaSimulado/>} />
-            <Route path='/resultadoSimulado' element={<><h1>Tela Resultado</h1></>} />
+            <Route path='/resultadoSimulado' element={<TelaResultadoSimulado/>} />
             <Route path='*' element={<Navigate to = "pagina-inicial" />}/>
         </Routes>
     );
