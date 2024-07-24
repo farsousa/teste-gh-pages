@@ -135,6 +135,9 @@ const CardSimulado = ({ id }: materia) => {
   const handleExpansao = (expandido:any) => {
     setExpandido(expandido);
   };
+  const navegaResultadoSimulado =()=>{
+    navegate(`/resultadoSimulado`, {state:{certas:contQuestoesCertas, erradas:contQuestoesErradas}})
+  }
   function ControlaBtnResponderProxima() {
     if (textoBtnResponder === "Responder") {
       if(radioButtonMarcadoUsuario===""){
@@ -183,7 +186,6 @@ const CardSimulado = ({ id }: materia) => {
       setBordaBtnResponder("");
       setColorBtnResponder("white");
       setComentarioDesativado(false)
-      console.log(textoBtnResponder)
       }
       
     } else {
@@ -200,7 +202,7 @@ const CardSimulado = ({ id }: materia) => {
         questoesSimuladoIndividual &&
         questoesSimuladoIndividual.length - 1 === controlaQuestoesSimulado
       ) {
-        setcontrolaQuestoesSimulado(controlaQuestoesSimulado);
+        navegaResultadoSimulado()
       } else {
         setcontrolaQuestoesSimulado(controlaQuestoesSimulado + 1);
       }
@@ -210,8 +212,8 @@ const CardSimulado = ({ id }: materia) => {
       setValorAlertaAlternativa4(undefined);
       setTextoBtnResponder("Responder");
     }
-    console.log(variacaoBtnResponder);
   }
+  
  
   return (
     <Card
