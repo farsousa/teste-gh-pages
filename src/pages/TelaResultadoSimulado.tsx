@@ -1,7 +1,8 @@
 import { useLocation } from "react-router-dom";
 import GraficoPizza from "../components/GraficoPizza";
 import NavBar from "../components/NavBar";
-import { Box, Typography } from "@mui/material";
+import { Box, Snackbar, Typography } from "@mui/material";
+import { useState } from "react";
 const logo = require('../img/pix.png')
 
 
@@ -14,12 +15,34 @@ const copiaTexto = ()=>{
     }).catch(err => {
         console.error('Erro ao copiar texto: ', err);
       });
+      handleClickOpenSnack()
 }
 const location = useLocation();
-  const {certas,erradas} = location.state
+const {certas,erradas} = location.state
+const [openSnack, setOpenSnack] = useState(false);
+const handleCloseSnack = () => {
+    setOpenSnack(false);
+};
+const handleClickOpenSnack = () => {
+    setOpenSnack(true);
+};
   console.log("cetas erradas"+(certas/(erradas+certas)))
     return (
         <Box className="body" sx={{width:"100vw", height:"100vh", backgroundColor: "#f3f4f7", pt:12, textAlign:"center"}}>
+            <Snackbar sx={{
+        '& .MuiSnackbarContent-root': {
+          backgroundColor: '#fec5bb', // Cor de fundo desejada
+          color: 'black', // Cor do texto desejada
+          fontWeight:"Bold"
+          },
+          
+        }}
+        open={openSnack}
+        autoHideDuration={1700}
+        onClose={handleCloseSnack}
+        message="Pix Copiado Com Sucesso!"
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      />
             <NavBar/>
             <Box className="main" sx={{width:{ sm:"80%", md:"60%"}, height:550, backgroundColor: "white", margin:"auto", borderRadius:5, boxShadow:24, pt:5, display: "flex", flexDirection:"column", alignItems: "center"}}>
                 <Typography variant="h6" component="div"> {(certas/(erradas+certas) > 0.7) ? `Parabéns, você passou! Acertou ${certas/(erradas+certas)*100}%` : `Infelizmente você reprovou - só acertou ${certas/(erradas+certas)*100}%`} </Typography>
