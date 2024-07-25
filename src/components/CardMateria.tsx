@@ -49,7 +49,7 @@ const CardMateria = ({id,descricao}:infoMateria) =>{
     iconeMateria = <MenuBookOutlinedIcon style={{ fontSize: 70 }} />;
   }
   return (
-    <Grid item xs={12} sm={sm} md={md} >
+    <Grid item xs={12} sm={sm} md={md}>
             
               <Item
                 sx={{

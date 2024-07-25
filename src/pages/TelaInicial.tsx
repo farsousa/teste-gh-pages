@@ -54,8 +54,7 @@ const TelaInicial = () => {
         variant="contained"
         sx={{
           width: { xs: 300, sm: 300, md: 300, lg: 300, xl: 300 },
-          mb: 7,
-          mt: 5,
+          mb: 3,
           padding: 2,
           color: "white",
           fontWeight: "bold",
@@ -69,7 +68,7 @@ const TelaInicial = () => {
           },
           backgroundColor: "gray",
           display: "flex",
-          marginTop: { xs: 50, sm: 30, md: 30, lg: 20, xl: 20 },
+          marginTop: { xs: 15, sm: 0, md: 20, lg: 0, xl: 0 },
         }}
         onClick={navega}
       >
@@ -77,19 +76,26 @@ const TelaInicial = () => {
         
       </Button>
       
-      <Box
-        sx={{
-          flexGrow: 1,
-          paddingRight: { xs: 4, sm: 4, md: 2, lg: 10, xl: 10 },
-          paddingLeft: { xs: 4, sm: 4, md: 2, lg: 10, xl: 10 },
-        }}
-        className="main"
-      >
+    
         <Grid
           className="card_group"
           container
-          spacing={4}
-          sx={{ flexWrap: "wrap", width: "100%", mb: 10, paddingLeft:0}}
+          spacing={6}
+          sx={{ 
+            flexWrap: "wrap", 
+            width: "100%", 
+            height:300,
+            paddingRight: { xs: 4, sm: 4, md: 2,lg:6,xl:50 },
+            paddingLeft: { xs: 4, sm: 4, md: 2,lg:6, xl:50 }, 
+            margin:0,
+            mb:"10px",
+            '& .MuiGrid-item': {
+              paddingLeft: 6, // Estilo padrão para todos os dispositivos
+              '@media (max-width:600px)': { // Para dispositivos pequenos
+                paddingLeft: 0,
+              },
+            }
+          }}
         >
           {listaMaterias !== undefined ? (
             listaMaterias.map((materia) => (
@@ -103,8 +109,8 @@ const TelaInicial = () => {
             <div> Carregando...</div>
           )}
         </Grid>
-      </Box>
     </Box>
+    
   );
 };
 export default TelaInicial;
