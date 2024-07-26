@@ -33,7 +33,7 @@ type infoMateria = {
 const CardMateria = ({id,descricao}:infoMateria) =>{
   const navegate = useNavigate()
   const navega =()=>{
-    navegate('/simulado', {state:{i:id}})
+    navegate(`/simulado`, {state:{i:id,controlador:1}})
   }
   let iconeMateria;
   if (descricao === 'Meio Ambiente e Cidadania') {
@@ -49,7 +49,7 @@ const CardMateria = ({id,descricao}:infoMateria) =>{
     iconeMateria = <MenuBookOutlinedIcon style={{ fontSize: 70 }} />;
   }
   return (
-    <Grid item xs={12} sm={sm} md={md}>
+    <Grid item xs={12} sm={sm} md={md} sx={{paddingBottom:"10px"}}>
             
               <Item
                 sx={{

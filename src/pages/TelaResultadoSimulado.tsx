@@ -26,8 +26,10 @@ const controlador = location.state?.controlador ?? 0;
 const navegate = useNavigate()
 
 useEffect(()=>{
-    if(!controlador)
+    if(!controlador){
         navegate("/pagina-inicial")
+    }
+
 },[controlador,navegate])
 
 const [openSnack, setOpenSnack] = useState(false);
