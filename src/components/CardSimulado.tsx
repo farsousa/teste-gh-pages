@@ -136,7 +136,7 @@ const CardSimulado = ({ id }: materia) => {
     setExpandido(expandido);
   };
   const navegaResultadoSimulado =()=>{
-    navegate(`/resultadoSimulado`, {state:{certas:contQuestoesCertas, erradas:contQuestoesErradas}})
+    navegate(`/resultadoSimulado`, {state:{certas:contQuestoesCertas, erradas:contQuestoesErradas,controlador:1}})
   }
   function ControlaBtnResponderProxima() {
     if (textoBtnResponder === "Responder") {

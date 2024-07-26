@@ -27,6 +27,7 @@ const navegate = useNavigate()
 
 useEffect(()=>{
     if(!controlador){
+        console.log("Entrou no controlador")
         navegate("/pagina-inicial")
     }
 
