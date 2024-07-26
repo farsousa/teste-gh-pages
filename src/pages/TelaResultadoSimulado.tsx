@@ -2,11 +2,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import GraficoPizza from "../components/GraficoPizza";
 import NavBar from "../components/NavBar";
 import { Box, Button, Snackbar, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HomeIcon from '@mui/icons-material/Home';
+
+
+
 const logo = require('../img/pix.png')
-
-
 
 const TelaResultadoSimulado = () =>{
     const chaveAleatoria = "00020126580014br.gov.bcb.pix0136309479f7-2ca5-4089-8516-ef8b1250622e52040000530398654045.005802BR5925Carlos Eduardo Moreira Bo6009Sao Paulo62070503***6304CEF9"
@@ -19,7 +20,16 @@ const copiaTexto = ()=>{
       handleClickOpenSnack()
 }
 const location = useLocation();
-const {certas,erradas} = location.state
+const erradas = location.state?.erradas ?? 0;
+const certas = location.state?.certas ?? 0;
+const controlador = location.state?.controlador ?? 0;
+const navegate = useNavigate()
+
+useEffect(()=>{
+    if(!controlador)
+        navegate("/pagina-inicial")
+},[controlador,navegate])
+
 const [openSnack, setOpenSnack] = useState(false);
 const handleCloseSnack = () => {
     setOpenSnack(false);
@@ -27,12 +37,10 @@ const handleCloseSnack = () => {
 const handleClickOpenSnack = () => {
     setOpenSnack(true);
 };
-const navegate = useNavigate()
 const handleNavegacao = () =>{
 
 navegate("/pagina-principal")
 }
-  console.log("cetas erradas"+(certas/(erradas+certas)))
     return (
         <Box className="body" sx={{width:"100vw", height:"100vh", backgroundColor: "#f3f4f7", pt:12, textAlign:"center"}}>
             <Snackbar sx={{
@@ -51,7 +59,7 @@ navegate("/pagina-principal")
       />
             <NavBar/>
             <Button variant="contained" onClick={handleNavegacao} sx={{verticalAlign:"middle",backgroundColor:"#2e2f2f", mb:3, width:90}}> <HomeIcon sx={{pr:"2px"}}/> Início</Button>
-            <Box className="main" sx={{width:{ sm:"80%", md:"60%"}, height:550, backgroundColor: "white", margin:"auto", borderRadius:5, boxShadow:24, pt:5, display: "flex", flexDirection:"column", alignItems: "center"}}>
+            <Box className="main" sx={{width:{ sm:"80%", md:"60%",xl:"40%"}, height:550, backgroundColor: "white", margin:"auto", borderRadius:5, boxShadow:24, pt:5, display: "flex", flexDirection:"column", alignItems: "center"}}>
                 <Typography variant="h6" component="div"> {(certas/(erradas+certas) > 0.7) ? `Parabéns, você passou! Acertou ${Math.floor(certas/(erradas+certas)*100)}%` : `Infelizmente você reprovou - só acertou ${Math.floor(certas/(erradas+certas)*100)}%`} </Typography>
 
                 <Box>

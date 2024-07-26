@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import "@fontsource/dosis";
 import api from "../service/api";
 import { useEffect, useState } from "react";
 import CardMateria from "../components/CardMateria";
@@ -20,10 +19,10 @@ interface Materia {
 
 const TelaInicial = () => {
   const [listaMaterias, setListaMaterias] = useState<Materia[]>([]);
-  const navegate = useNavigate()
+  const navegate = useNavigate();
   
   const navega =()=>{
-    navegate(`/simulado`, {state:{i:null}})
+    navegate(`/simulado`, {state:{i:null,controlador:1}})
   }
 
   useEffect(() => {

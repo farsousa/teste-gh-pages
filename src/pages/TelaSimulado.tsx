@@ -1,12 +1,21 @@
 import Box from "@mui/material/Box";
 import CardSimulado from "../components/CardSimulado";
 import NavBar from "../components/NavBar";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const TelaSimulado = () => {
   const location = useLocation();
-  const {i=null} = location.state
+  const i = location.state?.i ?? null;
+  const controlador = location.state?.controlador ?? 0;
   console.log("TelaSimulado "+ JSON.stringify(i))
+  const navegate = useNavigate()
+  useEffect(()=>{
+    if(!controlador){
+    navegate("/pagina-inicial")
+  }
+  },[controlador, navegate])
+ 
   return (
     <Box
       className="body"
