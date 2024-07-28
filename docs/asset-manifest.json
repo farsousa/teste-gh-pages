@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.99c9f938.css",
+    "main.js": "/static/js/main.da75ac78.js",
+    "static/media/dosis-latin-400-normal.woff": "/static/media/dosis-latin-400-normal.c53fd3a56444d5e8a827.woff",
+    "static/media/dosis-latin-400-normal.woff2": "/static/media/dosis-latin-400-normal.7bbdd5869ee95ad529ea.woff2",
+    "static/media/dosis-latin-ext-400-normal.woff": "/static/media/dosis-latin-ext-400-normal.2cf569c91ba581e902a5.woff",
+    "static/media/pix.png": "/static/media/pix.d708de780f1d4f18f66c.png",
+    "static/media/dosis-latin-ext-400-normal.woff2": "/static/media/dosis-latin-ext-400-normal.9229b4173bf9f7b3c099.woff2",
+    "static/media/dosis-vietnamese-400-normal.woff": "/static/media/dosis-vietnamese-400-normal.c53358b21d202e375d80.woff",
+    "static/media/dosis-vietnamese-400-normal.woff2": "/static/media/dosis-vietnamese-400-normal.2942bcb5b70d68fe30e6.woff2",
+    "index.html": "/index.html",
+    "main.99c9f938.css.map": "/static/css/main.99c9f938.css.map",
+    "main.da75ac78.js.map": "/static/js/main.da75ac78.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.99c9f938.css",
+    "static/js/main.da75ac78.js"
+  ]
+}
